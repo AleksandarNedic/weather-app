@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin-top: 30px;
     font-family: Arial, sans-serif;
     transition: 0.5s;
 }
@@ -19,3 +19,70 @@ body {
         color: white;
     }
 
+.weather-app-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#forecast {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.forecast-card {
+    width: 130px;
+    height: 240px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+    transition: transform 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-8px);
+}
+
+.forecast-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.forecast-card img {
+    width: 70px;
+    height: 70px;
+}
+
+.forecast-card h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.forecast-card p {
+    margin: 0;
+    text-align: center;
+    font-size: 15px;
+}
