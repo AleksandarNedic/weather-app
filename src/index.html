@@ -2,24 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-
-    <link rel="stylesheet" href="./style.css">
 </head>
 <body id="body">
-<section class="weather-app-search">
-    <form id="form">
-        <input placeholder="Enter City Name" id="input" type="text">
-        <button type="submit" id="submit">Submit</button>
-    </form>
-</section>
+<div class="weather-app">
+    <section class="weather-app-search">
+        <form id="form">
+            <input
+                    id="input"
+                    type="text"
+                    placeholder="Enter city name"
+            >
+            <button id="submit" type="submit">
+                Search
+            </button>
+        </form>
+    </section>
+    <div class="left-panel">
+        <div id="weather"></div>
+        <div id="day30-container">
+            <button id="show-30-days" type="button">
+                30 Days
+            </button>
+        </div>
 
-<div id="weather"></div>
-<div id="forecast"></div>
-
-
-
-<script type="module" src="../dist/bundle.js"></script>
-
+    </div>
+    <div id="forecast"></div>
+</div>
+<script src="bundle.js"></script>
 </body>
+
 </html>

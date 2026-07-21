@@ -21,6 +21,7 @@ export function displayForecast(data) {
                 <p>${day.day.condition.text}</p>
 
             </div>
+            
         `;
 
     });

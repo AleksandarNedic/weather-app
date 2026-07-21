@@ -2,7 +2,7 @@ import axios from "axios";
 import { renderLocationInfo } from "./displayLocationInfo";
 import { displayForecast } from "./displayForecast";
 
-const apiKey = '472620933754486cb2d183201261807';
+const apiKey = process.env.WEATHER_API_KEY;
 
 
 export async function getWeather(value, themeChange) {
@@ -37,13 +37,12 @@ export async function forcecastWeather(value, themeChange) {
         });
         console.log(forecastResponse.data);
         displayForecast(forecastResponse.data)
-        let isDay = response.data.current.is_day;
-        themeChange(isDay);
 
     }catch(err) {
         console.log(err)
     }
 }
+
 
 
 
