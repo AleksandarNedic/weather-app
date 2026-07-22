@@ -3,6 +3,8 @@ import "./style.css";
 import { getWeather, forcecastWeather } from "./weatherApi.js";
 import { setUp30DayButton } from "./day30Forecast.js";
 import { display30DayForecast } from "./display30DayForecast";
+import { getLocation } from "./geolocation";
+import { currentLocationInfo } from "./displayGeolocationInfo";
 
 const formElement = document.getElementById("form");
 const inputElement = document.getElementById("input");
@@ -51,4 +53,7 @@ day30Button.addEventListener("click", async () =>  {
     const response=  await setUp30DayButton(userLocation);
     await display30DayForecast(response);
 })
+
+
+getLocation();
 

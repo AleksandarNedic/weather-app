@@ -7,20 +7,24 @@ body {
     margin: 0;
     padding: 35px;
     font-family: Arial, sans-serif;
-    transition: background 0.5s, color 0.5s;
-}
-
-.day {
-    background: #87ceeb;
     color: #172033;
+    background: linear-gradient(135deg, #87ceeb, #dbeafe);
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
-.night {
-    background: #0b132b;
-    color: white;
+body.day {
+    color: #172033;
+    background: linear-gradient(135deg, #5fb8e8, #ccecff);
 }
 
-/* GLAVNI RASPORED APLIKACIJE */
+body.night {
+    color: #ffffff;
+    background: linear-gradient(135deg, #071126, #162448);
+}
+
+/* ==================================================
+   GLAVNI RASPORED
+================================================== */
 
 .weather-app {
     width: min(1150px, 100%);
@@ -31,17 +35,22 @@ body {
     grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
     grid-template-areas:
         "search search"
+        "current-location current-location"
         "weather forecast";
     gap: 25px;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.16);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
-/* SEARCH */
+/* ==================================================
+   SEARCH
+================================================== */
 
 .weather-app-search {
     grid-area: search;
@@ -58,13 +67,15 @@ body {
     min-width: 0;
     padding: 16px 20px;
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 14px;
     outline: none;
 
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.82);
     color: #172033;
     font-size: 16px;
+
+    transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 #input::placeholder {
@@ -72,31 +83,98 @@ body {
 }
 
 #input:focus {
-    background: white;
-    border-color: rgba(255, 255, 255, 0.8);
+    background: #ffffff;
+    border-color: rgba(255, 255, 255, 0.95);
 }
 
 #submit {
-    padding: 16px 28px;
+    padding: 16px 30px;
 
     border: none;
     border-radius: 14px;
     cursor: pointer;
 
-    background: rgba(255, 255, 255, 0.78);
-    color: #172033;
+    background: #2563eb;
+    color: #ffffff;
+
     font-size: 16px;
     font-weight: 600;
 
-    transition: transform 0.25s, background 0.25s;
+    box-shadow: 0 7px 18px rgba(37, 99, 235, 0.25);
+
+    transition:
+            transform 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
 }
 
 #submit:hover {
     transform: translateY(-2px);
-    background: white;
+    background: #1d4ed8;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.35);
 }
 
-/* LIJEVA STRANA */
+#submit:active {
+    transform: scale(0.97);
+}
+
+/* ==================================================
+   CURRENT LOCATION
+================================================== */
+
+#current-location-weather {
+    grid-area: current-location;
+    width: 100%;
+}
+
+.current-location-card {
+    width: 100%;
+    padding: 22px 28px;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.current-location-card h2 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.current-location-card h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.current-location-card p {
+    margin: 6px 0 0;
+    font-size: 17px;
+}
+
+.current-location-card .current-temp {
+    grid-column: 2;
+    grid-row: 1 / 4;
+
+    margin: 0;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ==================================================
+   LIJEVA STRANA
+================================================== */
 
 .left-panel {
     grid-area: weather;
@@ -115,18 +193,22 @@ body {
     min-width: 0;
 }
 
-/* TRENUTNO VRIJEME */
+/* ==================================================
+   TRENUTNO VRIJEME
+================================================== */
 
 .weather-card {
     width: 100%;
     min-height: 570px;
     padding: 50px;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .weather-info {
@@ -175,7 +257,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.14);
 }
@@ -183,19 +265,22 @@ body {
 .details p {
     margin: 0;
     padding: 18px;
+
     text-align: center;
     font-size: 17px;
 
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.13);
 }
 
-/* 30 DAYS DUGME */
+/* ==================================================
+   30 DAYS
+================================================== */
 
 #day30-container {
     width: 100%;
     min-height: 180px;
-    flex: 1;
+    margin-top: 30px;
 
     display: flex;
     justify-content: center;
@@ -206,19 +291,20 @@ body {
     width: 250px;
     height: 100px;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
 
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(12px);
-
+    background: rgba(255, 255, 255, 0.2);
     color: inherit;
+
     font-size: 17px;
     font-weight: 600;
 
     cursor: pointer;
-
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     transition:
             transform 0.3s ease,
@@ -228,30 +314,92 @@ body {
 
 #show-30-days:hover {
     transform: translateY(-4px) scale(1.03);
-    background: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
 }
 
 #show-30-days:active {
     transform: scale(0.97);
 }
 
-/* FORECAST – DESNA STRANA */
+.day30-card {
+    width: 100%;
+    padding: 28px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+
+    color: inherit;
+    text-align: center;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.day30-card h2 {
+    margin: 0 0 18px;
+    font-size: 28px;
+}
+
+.day30-card > p:first-of-type {
+    margin-bottom: 18px;
+    opacity: 0.85;
+}
+
+.day30-card img {
+    width: 100px;
+    height: 100px;
+    margin: 5px 0 20px;
+    object-fit: contain;
+}
+
+.day30-card p {
+    margin: 10px 0;
+    padding: 14px 16px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.13);
+
+    font-size: 16px;
+}
+
+.day30-card strong {
+    opacity: 0.9;
+}
+
+/* ==================================================
+   FORECAST
+================================================== */
 
 #forecast {
     grid-area: forecast;
     min-width: 0;
     padding: 20px;
 
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+#forecast.show {
+    display: flex;
 }
 
 .forecast-card {
@@ -268,17 +416,16 @@ body {
     align-items: center;
     gap: 8px 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.14);
 
-    transition: transform 0.25s, background 0.25s;
+    transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .forecast-card:hover {
     transform: translateX(-5px);
-    background: rgba(255, 255, 255, 0.24);
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .forecast-card h3 {
@@ -291,6 +438,7 @@ body {
     grid-area: icon;
     width: 70px;
     height: 70px;
+    object-fit: contain;
 }
 
 .forecast-card h2 {
@@ -306,7 +454,9 @@ body {
     opacity: 0.8;
 }
 
-/* RESPONSIVE */
+/* ==================================================
+   RESPONSIVE
+================================================== */
 
 @media (max-width: 850px) {
     body {
@@ -317,23 +467,14 @@ body {
         grid-template-columns: 1fr;
         grid-template-areas:
             "search"
+            "current-location"
             "weather"
             "forecast";
     }
 
-    .weather-card {
-        min-height: auto;
-    }
-
+    .weather-card,
     .weather-info {
         min-height: auto;
-    }
-
-    #day30-container {
-        flex: none;
-        display: none;
-        min-height: 180px;
-
     }
 }
 
@@ -353,6 +494,18 @@ body {
 
     #submit {
         width: 100%;
+    }
+
+    .current-location-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .current-location-card .current-temp {
+        grid-column: 1;
+        grid-row: auto;
+        margin-top: 12px;
+        font-size: 42px;
     }
 
     .weather-card {
@@ -378,100 +531,10 @@ body {
         margin-top: 25px;
     }
 
-    #day30-container {
-        min-height: 160px;
+    #show-30-days {
+        width: 100%;
     }
-}
-#day30-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
 
-#day30-container {
-    width: 100%;
-    min-height: 180px;
-    flex: 1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-top: 30px;
-}
-
-.day30-card {
-    width: 100%;
-    padding: 28px;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 22px;
-
-    background: rgba(255, 255, 255, 0.16);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(12px);
-
-    color: inherit;
-    text-align: center;
-
-    transition:
-            transform 0.3s ease,
-            background 0.3s ease,
-            box-shadow 0.3s ease;
-}
-
-.day30-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.22);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.22);
-}
-
-.day30-card h2 {
-    margin: 0 0 18px;
-    font-size: 28px;
-    color: inherit;
-}
-
-.day30-card > p:first-of-type {
-    margin-bottom: 18px;
-    opacity: 0.85;
-}
-
-.day30-card img {
-    width: 100px;
-    height: 100px;
-    margin: 5px 0 20px;
-    object-fit: contain;
-}
-
-.day30-card p {
-    margin: 10px 0;
-    padding: 14px 16px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 14px;
-
-    background: rgba(255, 255, 255, 0.12);
-
-    color: inherit;
-    font-size: 16px;
-}
-
-.day30-card strong {
-    color: inherit;
-    opacity: 0.9;
-}
-
-.day30-card p span {
-    font-weight: 600;
-}
-
-@media (max-width: 550px) {
     .day30-card {
         padding: 22px 16px;
     }
